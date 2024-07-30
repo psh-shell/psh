@@ -214,7 +214,6 @@ int PSH_ECHO(char **token_arr)
     for (int i = arg_index; token_arr[i] != NULL; i++)
     {
         char *arg = token_arr[i];
-        char *write_pos = arg;
 
         // Remove all quotes from the argument
         char *src = arg;

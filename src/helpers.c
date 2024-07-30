@@ -231,7 +231,7 @@ void delete_file(const char *filename){
     }
 }
 
-void clear_session_history()
+void clear_session_history(void)
 {
     char MEMORY_HISTORY_FILE[PATH_MAX];
     char SESSION_HISTORY_FILE[PATH_MAX];
@@ -667,7 +667,7 @@ void print_prompt(const char *PATH) {
     setenv("PS1", ps1, 1);
 }
 
-void load_history() {
+void load_history(void) {
 
     free_history(); //free existing history
     
@@ -701,7 +701,7 @@ void load_history() {
     fclose(fp);
 }
 
-void free_history() {
+void free_history(void) {
     for (int i = 0; i < history_count; i++) {
         free(history[i]);
     }
@@ -734,7 +734,7 @@ int kbhit(void) {
     return 0;
 }
 // Function to enable raw mode
-void enableRawMode() {
+void enableRawMode(void) {
     struct termios raw;
     tcgetattr(STDIN_FILENO, &raw);
     raw.c_lflag &= ~(ECHO | ICANON);                //change from canonical to raw and turning off echo
@@ -742,7 +742,7 @@ void enableRawMode() {
 }
 
 // Function to disable raw mode
-void disableRawMode() {
+void disableRawMode(void) {
     struct termios raw;
     tcgetattr(STDIN_FILENO, &raw);
     raw.c_lflag |= (ECHO | ICANON);                 //change from raw to canonical and turning on echo
@@ -768,7 +768,7 @@ char *trim_whitespace(char *str) {
     return str;
 }
 
-void generate_session_id() {
+void generate_session_id(void) {
     snprintf(session_id, sizeof(session_id), "%ld", (long)time(NULL));
     // printf("%s",session_id);
     setenv("SESSIONID", session_id, 1);

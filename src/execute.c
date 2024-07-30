@@ -393,7 +393,6 @@ void handle_input(char **inputline, size_t *n, const char *PATH) {
 void save_history(const char *inputline, const char* path_session)
 {
     FILE *fp_memory, *fp_session;
-    time_t timestamp;
 
     fp_memory = fopen(path_memory, "a");
 
@@ -489,7 +488,7 @@ void execute_command(char **token_arr, int *run){
                 exit(EXIT_FAILURE);
             }
          }
-        token_arr[position] = '\0';    
+        token_arr[position] = NULL;    
         free_double_pointer(temp);
         
     }
