@@ -54,12 +54,12 @@ void read_lines(const char *filename, int low_lim, int up_lim)
 
     while ((getline(&line, &len, file) != -1) && line != NULL)
     {
-        if (line_no >= low_lim && line_no <= up_lim)
+        if ((int)line_no >= (int)low_lim && (int)line_no <= (int)up_lim)            // Type converted to int
         {
             printf("%zu %s", line_no, line);
         }
         line_no++;
-        if (line_no > up_lim)
+        if ((int)line_no > (int)up_lim)
         {
             break;
         }
@@ -89,12 +89,12 @@ void read_lines_wo_no(const char *filename, int low_lim, int up_lim)
 
     while (getline(&line, &len, file) != -1)
     {
-        if (line_no >= low_lim && line_no <= up_lim)
+        if ((int)line_no >= (int)low_lim && (int)line_no <= (int)up_lim)   //Type converted to int
         {
             printf("%s", line);
         }
         line_no++;
-        if (line_no > up_lim)
+        if ((int)line_no > (int)up_lim)
         {
             break;
         }
@@ -148,7 +148,7 @@ void read_lines_reverse(const char *filename, int low_lim, int up_lim)
 
     while (getline(&line, &len, file) != -1)
     {
-        if (line_no >= low_lim && line_no <= up_lim)
+        if ((int)line_no >= (int)low_lim && (int)line_no <= (int)up_lim)        //Type converted to int
         {
             if (size == capacity)
             {
@@ -167,7 +167,7 @@ void read_lines_reverse(const char *filename, int low_lim, int up_lim)
             sprintf(lines[size - 1], "%zu %s", line_no, line);
         }
         line_no++;
-        if (line_no > up_lim)
+        if ((int)line_no > (int)up_lim)             // Type converted
         {
             break;
         }
@@ -351,7 +351,7 @@ void read_lines_reverse_wo_no(const char *filename, int low_lim, int up_lim)
 
     while (getline(&line, &len, file) != -1)
     {
-        if (line_no >= low_lim && line_no <= up_lim)
+        if ((int)line_no >= (int)low_lim && (int)line_no <= (int)up_lim)
         {
             if (size == capacity)
             {
@@ -369,7 +369,7 @@ void read_lines_reverse_wo_no(const char *filename, int low_lim, int up_lim)
             lines[size++] = strdup(line);
         }
         line_no++;
-        if (line_no > up_lim)
+        if ((int)line_no > (int)up_lim)
         {
             break;
         }
@@ -1019,7 +1019,7 @@ char **split_strings(const char *string) {
             exit(EXIT_FAILURE);
         }
         position++;
-        if (position >= bufsize) {
+        if ((int)position >= (int)bufsize) {              // Added int type casts
             bufsize += 64;
             split_arr = realloc(split_arr, bufsize * sizeof(char *));
             if (!split_arr) {
@@ -1064,7 +1064,7 @@ char **replace_alias(HashMap *map, char **token_arr) {
                 exit(EXIT_FAILURE);
             }
             position++;
-            if (position >= bufsize) 
+            if ((int)position >= (int)bufsize)            // added int casting
             {
                 bufsize += 64;
                 new_token_arr = realloc(new_token_arr, bufsize * sizeof(char *));
@@ -1094,7 +1094,7 @@ char **replace_alias(HashMap *map, char **token_arr) {
             }
             position++;
             i++;
-            if (position >= bufsize) {
+            if ((int)position >= (int)bufsize) {
                 bufsize += 64;
                 new_token_arr = realloc(new_token_arr, bufsize * sizeof(char *));
                 if (!new_token_arr) {
@@ -1191,7 +1191,7 @@ void get_alias_path(char *path_session, size_t size, const char *cwd) {
     snprintf(path_session, size, "%s/.files/ALIAS", cwd);
 }
 
-void sigint_handler(int sig)
+void sigint_handler(int signt)
 {
     const char *message = "SIGINT Detected\n";
     write(STDOUT_FILENO, message, strlen(message));

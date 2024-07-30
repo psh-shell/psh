@@ -4,7 +4,7 @@
 // Unused Parameters
 int main(int argc, char **argv, char **envp)
 {
-    printf("\e[1;1H\e[2J"); // basically clears the screen
+    printf("\x1B[1;1H\x1B[2J"); // basically clears the screen
     getcwd(cwd, sizeof(cwd)); // home/$USER/psh
     strcpy(PATH, cwd);
     

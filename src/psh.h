@@ -33,9 +33,11 @@
 #define ARROW_RIGHT 'C'
 
 
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#endif
 
 #define MAX_VARS 100
-#define PATH_MAX 4096
 #define ARROW_UP 'A'
 #define ARROW_DOWN 'B'
 #define ARROW_LEFT 'D'
@@ -157,6 +159,6 @@ char *remove_quotes(char *);
 char *expand_variables(char *);
 void handle_env_variable(char *[]);
 void get_alias_path(char *, size_t, const char *);
-void sigint_handler(int sig);
+void sigint_handler(int signt);
 
 #endif

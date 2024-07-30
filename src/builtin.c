@@ -779,7 +779,7 @@ int PSH_FC(char **token_arr)
         else if (offset < 0)
         {
             // Handling negative offset
-            if ((size_t)(-offset) > total_lines)
+            if ((int)(-offset) > (int)total_lines)        // Intially it was (size_t)(-offset) > total_lines
             {
                 printf("psh: history -d: %ld: history position out of range\n", offset);
                 fclose(fp1);
@@ -795,7 +795,7 @@ int PSH_FC(char **token_arr)
         }
 
         // Checking if line_to_remove is within range
-        if (line_to_remove > total_lines)
+        if ((int)line_to_remove > (int)total_lines)
         {
             printf("psh: history -d: %zu: history position out of range\n",
                    line_to_remove);
